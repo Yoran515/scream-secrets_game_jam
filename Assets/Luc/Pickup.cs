@@ -9,6 +9,18 @@ public class Pickup : MonoBehaviour
     public int tapeNumber;
     public GameObject tray;
 
+    public float spaceAboveMouse = 1f;
+
+    private VhsPlayer vhsPlayer;
+
+    private Vector3 initialPosition;
+
+    private void Start()
+    {
+        initialPosition = this.transform.position;
+        vhsPlayer = tray.GetComponent<VhsPlayer>();
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -39,7 +51,7 @@ public class Pickup : MonoBehaviour
             else
             {
                 Vector3 newPosition = GetMouseWorldPosition();
-                selectedObject.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z);
+                selectedObject.transform.position = new Vector3(newPosition.x, newPosition.y + spaceAboveMouse, newPosition.z);
 
                 if (selectedRigidbody != null)
                 {
@@ -56,7 +68,7 @@ public class Pickup : MonoBehaviour
         if (selectedObject != null)
         {
             Vector3 newPosition = GetMouseWorldPosition();
-            selectedObject.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z);
+            selectedObject.transform.position = new Vector3(newPosition.x, newPosition.y + spaceAboveMouse, newPosition.z);
 
             if (Input.GetMouseButtonDown(1))
             {
@@ -65,16 +77,31 @@ public class Pickup : MonoBehaviour
                     selectedObject.transform.rotation.eulerAngles.y + 90f,
                     selectedObject.transform.rotation.eulerAngles.z));
             }
-
-            float distanceToTray = Vector3.Distance(selectedObject.transform.position, tray.transform.position);
-            if (distanceToTray <= 20f)
-            {
-                // Object is within the 20-unit radius of the tray
-                Debug.Log("Object is within 20 units of the tray.");
-            }
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "FloorTrigger")
+        {
+            this.transform.position = initialPosition;
+            this.transform.rotation = Quaternion.identity;
+        }
+
+/*        if (other.tag == "VHS_Player")
+        {
+            Debug.Log("VHS_Player in");
+            vhsPlayer.SetVhs(this.gameObject);
+        }*/
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "VHS_Player")
+        {
+            Debug.Log("VHS_Player Out");
+        }
+    }
     private RaycastHit CastRay()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
