@@ -33,12 +33,13 @@ public class CameraClick : MonoBehaviour
 
     public void Onscreen()
     {
+        int currentIntValue = animator.GetInteger("IsPressingScreen");
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("testt");
             animator.SetInteger("IsPressingScreen", 1);
         }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Camera"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Camera")&& currentIntValue == 1)
         {
             animator.SetInteger("IsPressingScreen", 2);
             UI.SetActive(true);
