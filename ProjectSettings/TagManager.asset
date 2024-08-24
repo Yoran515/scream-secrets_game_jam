@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Drag
+  - FloorTrigger
+  - VHS_Player
   layers:
   - Default
   - TransparentFX
