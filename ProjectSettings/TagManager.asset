@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Drag
   - Screen
+  - FloorTrigger
+  - VHS_Player
   layers:
   - Default
   - TransparentFX
