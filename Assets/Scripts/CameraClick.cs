@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CameraClick : MonoBehaviour
 {
-  
+    public GameObject UI;
     public Animator animator;
-
+    public CamerSwitch cameraswitch;
     private void Start()
     {
-     
+        UI.SetActive(false);
+        cameraswitch.enabled = false;
     }
     void Update()
     {
@@ -36,9 +38,12 @@ public class CameraClick : MonoBehaviour
             Debug.Log("testt");
             animator.SetInteger("IsPressingScreen", 1);
         }
-        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Camera"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Camera"))
         {
             animator.SetInteger("IsPressingScreen", 2);
+            UI.SetActive(true);
+            cameraswitch.enabled = true;
+
         }
     }
 }
