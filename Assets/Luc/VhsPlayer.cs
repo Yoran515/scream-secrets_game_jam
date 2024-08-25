@@ -11,7 +11,9 @@ public class VhsPlayer : MonoBehaviour
     private Pickup pickupObj;
 
     private GameObject currentSnappedObject; 
-    private bool isOccupied; 
+    private bool isOccupied;
+
+    public int number;
 
 
     void Start()
@@ -19,6 +21,11 @@ public class VhsPlayer : MonoBehaviour
         stickPosition = stickPositionObject.position;
         stickRotation = stickPositionObject.rotation; 
         isOccupied = false; 
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,6 +53,8 @@ public class VhsPlayer : MonoBehaviour
             isOccupied = true;
 
             Debug.Log(pickupObj.tapeNumber);
+
+            number = pickupObj.tapeNumber;
         }
     }
     private void OnTriggerExit(Collider other)
