@@ -15,9 +15,13 @@ public class Pickup : MonoBehaviour
 
     private Vector3 initialPosition;
 
+    private Transform cameraTransform;
+
     private void Start()
     {
         initialPosition = this.transform.position;
+
+        cameraTransform = Camera.main.gameObject.transform;
         vhsPlayer = tray.GetComponent<VhsPlayer>();
     }
 
@@ -69,6 +73,8 @@ public class Pickup : MonoBehaviour
         {
             Vector3 newPosition = GetMouseWorldPosition();
             selectedObject.transform.position = new Vector3(newPosition.x, newPosition.y + spaceAboveMouse, newPosition.z);
+
+            transform.LookAt(cameraTransform);
 
             if (Input.GetMouseButtonDown(1))
             {
