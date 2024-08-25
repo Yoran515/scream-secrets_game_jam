@@ -13,6 +13,8 @@ public class CameraClick : MonoBehaviour
     public CamerSwitch cameraswitch;
     public GameObject Camera1;
     public Button camButton;
+
+    public BookAppear book;
     private void Start()
     {
         UI.SetActive(false);
@@ -48,16 +50,19 @@ public class CameraClick : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit))
             {
-
-                // Check if the collider's GameObject has the specified tag
-                if (hit.collider.CompareTag("Screen"))
+                if(book.BookIsVisible == false)
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    if (hit.collider.CompareTag("Screen"))
                     {
-                        Debug.Log("testt");
-                        animator.SetInteger("IsPressingScreen", 1);
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            Debug.Log("testt");
+                            animator.SetInteger("IsPressingScreen", 1);
+                        }
                     }
                 }
+              
+               
 
             }
          

@@ -6,6 +6,8 @@ public class BookAppear : MonoBehaviour
 {
 
     public GameObject Book;
+
+    public bool BookIsVisible;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,11 +33,17 @@ public class BookAppear : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))  Book.SetActive(false); 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Book.SetActive(false);
+            BookIsVisible= false;
+        }
+
     }
 
     private void BookApp()
     {
         Book.SetActive(true);
+        BookIsVisible = true;
     }
 }
