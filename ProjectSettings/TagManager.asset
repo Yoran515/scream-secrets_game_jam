@@ -8,6 +8,7 @@ TagManager:
   - Screen
   - FloorTrigger
   - VHS_Player
+  - File
   layers:
   - Default
   - TransparentFX
