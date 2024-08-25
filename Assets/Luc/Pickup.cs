@@ -6,7 +6,7 @@ public class Pickup : MonoBehaviour
 {
     private GameObject selectedObject;
     private Rigidbody selectedRigidbody;
-    public int tapeNumber;
+    public int tapeNumber = 1;
     public GameObject tray;
 
     public float spaceAboveMouse = 1f;
@@ -14,12 +14,14 @@ public class Pickup : MonoBehaviour
     private VhsPlayer vhsPlayer;
 
     private Vector3 initialPosition;
+    private Quaternion initialRotation;
 
     private Transform cameraTransform;
 
     private void Start()
     {
         initialPosition = this.transform.position;
+        initialRotation = this.transform.rotation;
 
         cameraTransform = Camera.main.gameObject.transform;
         vhsPlayer = tray.GetComponent<VhsPlayer>();
@@ -69,12 +71,20 @@ public class Pickup : MonoBehaviour
             }
         }
 
-        if (selectedObject != null)
+        if (selectedObject != null && selectedObject == this.gameObject)
         {
             Vector3 newPosition = GetMouseWorldPosition();
             selectedObject.transform.position = new Vector3(newPosition.x, newPosition.y + spaceAboveMouse, newPosition.z);
 
-            transform.LookAt(cameraTransform);
+            // Get the direction vector from the object to the camera
+            Vector3 directionToCamera = cameraTransform.position - selectedObject.transform.position;
+            directionToCamera.y = 0; // Keep only the horizontal direction
+
+            // Create a rotation that only affects the Y axis
+            Quaternion rotationToCamera = Quaternion.LookRotation(directionToCamera);
+
+            // Apply the rotation to the selected object
+            selectedObject.transform.rotation = rotationToCamera;
 
             if (Input.GetMouseButtonDown(1))
             {
@@ -86,12 +96,13 @@ public class Pickup : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+
+private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "FloorTrigger")
         {
             this.transform.position = initialPosition;
-            this.transform.rotation = Quaternion.identity;
+            this.transform.rotation = initialRotation;
         }
 
 /*        if (other.tag == "VHS_Player")

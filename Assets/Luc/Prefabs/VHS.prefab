@@ -127,5 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7264486bbee07484e8c80af8b87b77fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tapeNumber: 0
+  tapeNumber: 1
   tray: {fileID: 0}
+  spaceAboveMouse: 1
