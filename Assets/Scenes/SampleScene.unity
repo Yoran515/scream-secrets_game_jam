@@ -3341,6 +3341,8 @@ MonoBehaviour:
   UI: {fileID: 899057430}
   animator: {fileID: 1687258588}
   cameraswitch: {fileID: 1537581850}
+  Camera1: {fileID: 248979794}
+  camButton: {fileID: 1553107901}
 --- !u!4 &1385176944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a55bd99a84c5ccc4685172b4ce57a742, type: 3}
@@ -4051,7 +4053,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1553107902}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1346543441}
+        m_TargetAssemblyTypeName: CameraClick, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1553107902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4580,7 +4594,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6129c3a7038111a46adb4efec4df7b13, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
