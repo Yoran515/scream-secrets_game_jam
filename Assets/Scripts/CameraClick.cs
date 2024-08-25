@@ -13,7 +13,7 @@ public class CameraClick : MonoBehaviour
     public CamerSwitch cameraswitch;
     public GameObject Camera1;
     public Button camButton;
-
+    public int CamAnimation;
     public BookAppear book;
     private void Start()
     {
@@ -58,6 +58,7 @@ public class CameraClick : MonoBehaviour
                         {
                             Debug.Log("testt");
                             animator.SetInteger("IsPressingScreen", 1);
+                            animator.applyRootMotion = false;
                         }
                     }
                 }
@@ -70,12 +71,12 @@ public class CameraClick : MonoBehaviour
             Camera1.SetActive(false);
             camButton.enabled = true;
         }
-    
 
+        
         if (stateInfo.IsName("Camera"))
         {
             animator.SetInteger("IsPressingScreen", 2);
-        
+            CamAnimation = 2;
         }
         if (stateInfo.IsName("lookingat"))
         {
@@ -86,6 +87,12 @@ public class CameraClick : MonoBehaviour
         {
             UI.SetActive(false);
             Camera1.SetActive(false);
+            
+        }
+        if(stateInfo.IsName("New State"))
+        {
+            animator.applyRootMotion = true;
+            
         }
        
     }
@@ -94,6 +101,7 @@ public class CameraClick : MonoBehaviour
     {
             Camera1.SetActive(false);
             animator.SetInteger("IsPressingScreen", 3);
+            CamAnimation = 3;
             UI.SetActive(false);
             camButton.enabled = false;
     }

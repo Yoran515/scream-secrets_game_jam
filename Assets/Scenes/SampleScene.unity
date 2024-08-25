@@ -2713,7 +2713,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139398678}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3529,6 +3529,7 @@ MonoBehaviour:
   cameraswitch: {fileID: 1537581850}
   Camera1: {fileID: 248979794}
   camButton: {fileID: 1553107901}
+  CamAnimation: 0
   book: {fileID: 1766527033}
 --- !u!4 &1385176944 stripped
 Transform:
@@ -4768,6 +4769,7 @@ MonoBehaviour:
   _camera: {fileID: 1687258584}
   cameraRotation: {fileID: 1687258585}
   rotationSpeed: 10
+  Cameralook: {fileID: 1346543441}
 --- !u!95 &1687258588
 Animator:
   serializedVersion: 5
@@ -4781,7 +4783,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6129c3a7038111a46adb4efec4df7b13, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
