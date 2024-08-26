@@ -33,7 +33,7 @@ public class GameHandler : MonoBehaviour
     }
 }
 
-[Serializable]
+/*[Serializable]
 class Cam
 {
     public string name;
@@ -41,3 +41,4 @@ class Cam
     public Camera camera;
     public bool isOn;
 }
+*/

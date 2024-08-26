@@ -16,26 +16,29 @@ public class BookAppear : MonoBehaviour
 
     void Update()
     {
-        
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        if (Camera.main != null) { 
+          Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-        // Check if the ray hits a collider
-        if (Physics.Raycast(ray, out hit))
-        {
-            // Check if the collider's GameObject has the specified tag
-            if (hit.collider.CompareTag("File"))
+            // Check if the ray hits a collider
+            if (Physics.Raycast(ray, out hit))
             {
-                if (Input.GetMouseButtonDown(0))
+                // Check if the collider's GameObject has the specified tag
+                if (hit.collider.CompareTag("File"))
                 {
-                    if (click.animator.GetCurrentAnimatorStateInfo(0).IsName("New State"))
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        BookApp();
+                        if (click.animator.GetCurrentAnimatorStateInfo(0).IsName("New State"))
+                        {
+                            BookApp();
+                        }
+
                     }
-                 
                 }
             }
         }
+
+       
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
