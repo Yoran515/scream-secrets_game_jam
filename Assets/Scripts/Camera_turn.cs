@@ -11,6 +11,7 @@ public class Camera_turn : MonoBehaviour
     public CameraClick Cameralook;
     private Quaternion targetRotation; 
     private bool isTurning = false;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -51,5 +52,16 @@ public class Camera_turn : MonoBehaviour
             }
        }
         
+    }
+
+    public void IsLooking()
+    {
+        animator.applyRootMotion = false;
+    }
+    public void IsBack()
+    {
+        animator.applyRootMotion = true;
+
+
     }
 }

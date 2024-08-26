@@ -6,7 +6,7 @@ public class BookAppear : MonoBehaviour
 {
 
     public GameObject Book;
-
+    public CameraClick click;
     public bool BookIsVisible;
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,11 @@ public class BookAppear : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    BookApp();
+                    if (click.animator.GetCurrentAnimatorStateInfo(0).IsName("New State"))
+                    {
+                        BookApp();
+                    }
+                 
                 }
             }
         }

@@ -15,11 +15,13 @@ public class CameraClick : MonoBehaviour
     public Button camButton;
     public int CamAnimation;
     public BookAppear book;
+
+    public bool lookingatScreen;
     private void Start()
     {
         UI.SetActive(false);
-    
-    
+
+
     }
     void Update()
     {
@@ -27,17 +29,17 @@ public class CameraClick : MonoBehaviour
         // Cast a ray from the camera to the mouse position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-     
+
         // Check if the ray hits a collider
         if (Physics.Raycast(ray, out hit))
         {
-            
-                // Check if the collider's GameObject has the specified tag
-                if (hit.collider.CompareTag("Screen"))
-                {
-                    Onscreen();
-                }
-            
+
+            // Check if the collider's GameObject has the specified tag
+            if (hit.collider.CompareTag("Screen"))
+            {
+                Onscreen();
+            }
+
         }
     }
 
@@ -50,61 +52,69 @@ public class CameraClick : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit))
             {
-                if(book.BookIsVisible == false)
+                if (book.BookIsVisible == false)
                 {
                     if (hit.collider.CompareTag("Screen"))
                     {
                         if (Input.GetMouseButtonDown(0))
                         {
+
+                            lookingatScreen = true;
                             Debug.Log("testt");
                             animator.SetInteger("IsPressingScreen", 1);
-                            animator.applyRootMotion = false;
+                            CamAnimation = 1;
+
                         }
                     }
                 }
-              
-               
+
+
 
             }
-         
+
             UI.SetActive(false);
             Camera1.SetActive(false);
             camButton.enabled = true;
+
         }
 
-        
+
         if (stateInfo.IsName("Camera"))
         {
             animator.SetInteger("IsPressingScreen", 2);
             CamAnimation = 2;
+
         }
         if (stateInfo.IsName("lookingat"))
         {
             UI.SetActive(true);
             Camera1.SetActive(true);
+
+
         }
         if (stateInfo.IsName("Back"))
         {
             UI.SetActive(false);
             Camera1.SetActive(false);
-            
+
+            lookingatScreen = false;
         }
-        if(stateInfo.IsName("New State"))
+        if (stateInfo.IsName("New State"))
         {
-            animator.applyRootMotion = true;
-            
+
         }
-       
+
+
     }
 
     public void OnClick()
     {
-            Camera1.SetActive(false);
-            animator.SetInteger("IsPressingScreen", 3);
-            CamAnimation = 3;
-            UI.SetActive(false);
-            camButton.enabled = false;
+        Camera1.SetActive(false);
+        animator.SetInteger("IsPressingScreen", 3);
+        CamAnimation = 3;
+        UI.SetActive(false);
+        camButton.enabled = false;
     }
 
-  
+    
 }
