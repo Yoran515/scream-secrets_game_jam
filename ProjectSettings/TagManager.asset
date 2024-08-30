@@ -10,6 +10,8 @@ TagManager:
   - VHS_Player
   - File
   - security cam
+  - Mug
+  - Lever
   layers:
   - Default
   - TransparentFX

@@ -21,9 +21,12 @@ public class Mug : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (hit.collider.CompareTag("Mug"))
             {
-                body.AddForce(-mug.forward * MugThrowPower);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    body.AddForce(-mug.forward * MugThrowPower);
+                }
             }
         }
     }
